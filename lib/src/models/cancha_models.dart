@@ -10,24 +10,32 @@ String canchaToJson(Cancha data) => json.encode(data.toJson());
 
 class Cancha {
     Cancha({
+        this.id,
         this.tipo,
         this.nombre,
+        this.foto,
         this.implementos,
     });
 
+    String? id;
     String? tipo;
     String? nombre;
+    String? foto;
     String? implementos;
 
     factory Cancha.fromJson(Map<String, dynamic> json) => Cancha(
-        tipo: json["Tipo"],
-        nombre: json["Nombre"],
-        implementos: json["Implementos"],
+        id: json["id"],
+        tipo: json["tipo"],
+        nombre: json["nombre"],
+        foto: json["foto"],
+        implementos: json["implementos"],
     );
 
     Map<String, dynamic> toJson() => {
-        "Tipo": tipo,
-        "Nombre": nombre,
-        "Implementos": implementos,
+        "id": id,
+        "tipo": tipo,
+        "nombre": nombre,
+        "foto": foto,
+        "implementos": implementos,
     };
 }
