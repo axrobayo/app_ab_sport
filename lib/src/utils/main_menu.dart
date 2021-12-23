@@ -1,3 +1,4 @@
+import 'package:ab_sport/src/widgest/catalogo_cancha_widget.dart';
 import 'package:ab_sport/src/widgest/listareservacion_widget.dart';
 import 'package:ab_sport/src/widgest/location_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ List<ItemMenu> menuOptions = [
   //ItemMenu(Icons.people, "Técnicos")
 ];
 List<Widget> homeWidgets = [
-  const LocationWidget(),
+  const ListaCanchaWidget(),
   const Text("Aqui debe ir la reservacion"),
   const ListaReservacionWidget()
   //const MaterialesWidget()

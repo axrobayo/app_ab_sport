@@ -11,7 +11,7 @@ class ListaReservacionWidget extends StatefulWidget {
 }
 
 class _ListaReservacionWidgetState extends State<ListaReservacionWidget> {
-  final ReservacionService _listaReservacionervice = ReservacionService();
+  final ReservacionService _listaReservacionService = ReservacionService();
   List<Reservacion>? _listaReservacion;
 
   @override
@@ -46,7 +46,7 @@ class _ListaReservacionWidgetState extends State<ListaReservacionWidget> {
   _downloadlistaReservacion() async {
     // ignore: avoid_print
     //print("1.1 Invocación al servicio de mantenimiento");
-    _listaReservacion = await _listaReservacionervice.getReservacion();
+    _listaReservacion = await _listaReservacionService.getReservacion();
     if (mounted) {
       setState(() {
         // ignore: avoid_print
