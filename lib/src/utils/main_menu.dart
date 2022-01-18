@@ -1,6 +1,7 @@
-import 'package:ab_sport/src/widgest/catalogo_cancha_widget.dart';
+import 'package:ab_sport/src/pages/menu_canchas.dart';
+//import 'package:ab_sport/src/widgest/catalogo_cancha_widget.dart';
 import 'package:ab_sport/src/widgest/listareservacion_widget.dart';
-import 'package:ab_sport/src/widgest/location_widget.dart';
+//import 'package:ab_sport/src/widgest/location_widget.dart';
 import 'package:flutter/material.dart';
 
 class ItemMenu {
@@ -17,7 +18,8 @@ List<ItemMenu> menuOptions = [
   //ItemMenu(Icons.people, "Técnicos")
 ];
 List<Widget> homeWidgets = [
-  const ListaCanchaWidget(),
+  const MenuCanchas(),
+  //const ListaCanchaWidget(),
   const Text("Aqui debe ir la reservacion"),
   const ListaReservacionWidget()
   //const MaterialesWidget()
