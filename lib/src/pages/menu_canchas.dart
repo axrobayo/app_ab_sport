@@ -25,11 +25,11 @@ class _MenuCanchasState extends State<MenuCanchas> {
                     borderRadius: BorderRadius.circular(10)),
                 child: GestureDetector(
                     onTap: () {
-                      // ignore: avoid_print
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (_) => const ListaCanchaWidget()));
+                      // ignore: avoid_print
                       print("click en" + menu[index].nombre);
                     },
                     child: Column(
