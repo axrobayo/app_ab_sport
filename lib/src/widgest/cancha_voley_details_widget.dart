@@ -1,11 +1,8 @@
-import 'package:ab_sport/src/models/cancha_voly_models.dart';
+import 'package:ab_sport/src/models/cancha_voley_models.dart';
+
+import 'package:ab_sport/src/widgest/cancha_voley_details_content_widget.dart';
+import 'package:ab_sport/src/widgest/cancha_voley_form_widget.dart';
 import 'package:flutter/material.dart';
-/*import 'package:trifasic_101/src/models/foto_model.dart';
-import 'package:trifasic_101/src/models/mantenimiento_model.dart';
-import 'package:trifasic_101/src/services/foto_service.dart';
-import 'package:trifasic_101/src/widgets/mantenimiento_details_content_widget.dart';
-import 'package:trifasic_101/src/widgets/mantenimiento_form_widget.dart';*/
-//import 'dart:developer' as developer;
 
 class CanchaVoleyDetailsWidget extends StatefulWidget {
   const CanchaVoleyDetailsWidget({Key? key, required this.cvoley})
@@ -13,26 +10,23 @@ class CanchaVoleyDetailsWidget extends StatefulWidget {
   final CanchaVoley cvoley;
 
   @override
-  State<CanchaVoleyDetailsWidget> createState() =>
+  _CanchaVoleyDetailsWidgetState createState() =>
       _CanchaVoleyDetailsWidgetState();
 }
 
 class _CanchaVoleyDetailsWidgetState extends State<CanchaVoleyDetailsWidget>
     with SingleTickerProviderStateMixin {
-  final List<Tab> _tabs = <Tab>[
-    const Tab(text: "Detalles", ),
-    const Tab(text: "Reservacion"),
-    
-    //const Tab(text: "Final")
+  final List<Tab> _myTabs = <Tab>[
+    const Tab(text: 'Detalles'),
+    const Tab(text: 'Formulario'),
   ];
 
   late TabController _tabController;
 
   @override
   void initState() {
-    _tabController = TabController(length: _tabs.length, vsync: this);
     super.initState();
-    //_downloadFotos();
+    _tabController = TabController(vsync: this, length: _myTabs.length);
   }
 
   @override
@@ -44,23 +38,11 @@ class _CanchaVoleyDetailsWidgetState extends State<CanchaVoleyDetailsWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: TabBar(tabs: _tabs, controller: _tabController),
-        /*body: TabBarView(children: [
-          MantenimientoDetailsContentWidget(
-              cvoley: widget.cvoley),
-          MantenimientoFormWidget(
-              idcvoley: widget.cvoley.idcvoley ?? "",
-              isInicio: true),
-          MantenimientoFormWidget(
-              idmantenimiento: widget.cvoley.idmantenimiento ?? "",
-              isInicio: false),
-        ], controller: _tabController)*/);
+      appBar: TabBar(tabs: _myTabs, controller: _tabController),
+      body: TabBarView(controller: _tabController, children: [
+        CanchaVoleyDetailsContentWidget(cvoley: widget.cvoley),
+        CanchaVoleyFormWidget(idFutbol: widget.cvoley.idVoley ?? "")
+      ]),
+    );
   }
-
- /* _downloadFotos() async {
-    String id = widget.cvoley.idmantenimiento!;
-    FotoService fotoService = FotoService();
-    List<Foto>? fotos = await fotoService.getFotos(id);
-    developer.log(fotos.toString());
-  }*/
 }

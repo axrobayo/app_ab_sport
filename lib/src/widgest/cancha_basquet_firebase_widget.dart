@@ -1,4 +1,4 @@
-import 'package:ab_sport/src/models/cancha_basket_models.dart';
+import 'package:ab_sport/src/models/cancha_basquet_models.dart';
 import 'package:ab_sport/src/widgest/cards/cancha_basquet_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _CanchaBasquetFirebaseWidgetState
             CanchaBasquet model = CanchaBasquet.fromJson(data);
             model.idBasquet = document.id;
 
-            return CanchaBasquetCard(basquet: model);
+            return CanchaBasquetCard(cbasquet: model);
           }).toList(),
         );
       },

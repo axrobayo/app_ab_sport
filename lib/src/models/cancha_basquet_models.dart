@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final CanchaFutbol = CanchaFutbolFromJson(jsonString);
+//     final CanchaBasquet = CanchaBasquetFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -8,14 +8,14 @@ import 'package:ab_sport/src/models/foto_models.dart';
 
 //import 'package:ab_sport/src/models/foto_models.dart';
 
-CanchaFutbol canchaFutbolFromJson(String str) =>
-    CanchaFutbol.fromJson(json.decode(str));
+CanchaBasquet canchaBasquetFromJson(String str) =>
+    CanchaBasquet.fromJson(json.decode(str));
 
-String canchaFutbolToJson(CanchaFutbol data) => json.encode(data.toJson());
+String canchaBasquetToJson(CanchaBasquet data) => json.encode(data.toJson());
 
-class CanchaFutbol {
-  CanchaFutbol({
-    this.idFutbol,
+class CanchaBasquet {
+  CanchaBasquet({
+    this.idBasquet,
     this.nombreCancha,
     this.fotoCancha,
     this.balon,
@@ -27,7 +27,7 @@ class CanchaFutbol {
     this.telefonoCliente,
   });
 
-  String? idFutbol;
+  String? idBasquet;
   String? nombreCancha;
   String? fotoCancha;
   bool? balon;
@@ -38,8 +38,8 @@ class CanchaFutbol {
   String? nombreCliente;
   String? telefonoCliente;
 
-  factory CanchaFutbol.fromJson(Map<String, dynamic> json) => CanchaFutbol(
-        idFutbol: json["idFutbol"],
+  factory CanchaBasquet.fromJson(Map<String, dynamic> json) => CanchaBasquet(
+        idBasquet: json["idBasquet"],
         nombreCancha: json["nombreCancha"],
         fotoCancha: json["fotoCancha"],
         balon: json["balon"],
@@ -48,12 +48,12 @@ class CanchaFutbol {
             json["horario"] == null ? null : DateTime.parse(json["horario"]),
         //fotoCedula: json["fotoCedula"],
         estado: json["estado"],
-        nombreCliente: json["nombreCliente"],
-        telefonoCliente: json["telefonocliente"],
+        nombreCliente: json["nombreCanchaBasquet"],
+        telefonoCliente: json["telefonoCanchaBasquet"],
       );
 
   Map<String, dynamic> toJson() => {
-        "idFutbol": idFutbol,
+        "idBasquet": idBasquet,
         "nombreCancha": nombreCancha,
         "fotoCancha": fotoCancha,
         "balon": balon,
@@ -61,7 +61,7 @@ class CanchaFutbol {
         "horario": horario,
         "fotoCedula": fotoCedula!.toJson(),
         "estado": estado,
-        "nombreCliente": nombreCliente,
-        "telefonoCliente": telefonoCliente,
+        "nombreCanchaBasquet": nombreCliente,
+        "telefonoCanchaBasquet": telefonoCliente,
       };
 }

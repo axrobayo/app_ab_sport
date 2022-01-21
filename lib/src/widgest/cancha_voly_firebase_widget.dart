@@ -1,4 +1,4 @@
-import 'package:ab_sport/src/models/cancha_voly_models.dart';
+import 'package:ab_sport/src/models/cancha_voley_models.dart';
 import 'package:ab_sport/src/widgest/cards/cancha_voly_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

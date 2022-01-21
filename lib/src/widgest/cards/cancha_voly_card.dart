@@ -1,4 +1,4 @@
-import 'package:ab_sport/src/models/cancha_voly_models.dart';
+import 'package:ab_sport/src/models/cancha_voley_models.dart';
 import 'package:ab_sport/src/pages/cancha_voley_page.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,8 @@ class CanchaVolyCard extends StatelessWidget {
               )),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text(
+            child: 
+            Text(
               voley.precio.toString(),
               style: TextStyle(color: Colors.black.withOpacity(0.6)),
             ),
@@ -42,7 +43,7 @@ class CanchaVolyCard extends StatelessWidget {
               );
                   
                 },
-                child: const Text('voleyRVAR'),
+                child: const Text('RESERVAR'),
               ),
             ],
           ),

@@ -1,15 +1,9 @@
 //import 'package:ab_sport/src/models/cancha_futbol_models.dart';
 import 'package:ab_sport/src/models/cancha_futbol_models.dart';
-//import 'package:ab_sport/src/models/foto_models.dart';
-//import 'package:ab_sport/src/services/foto_service.dart';
+
 import 'package:ab_sport/src/widgest/cancha_futbol_details_content_widget.dart';
 import 'package:ab_sport/src/widgest/cancha_futbol_form_widget.dart';
 import 'package:flutter/material.dart';
-/*import 'package:trifasic_101/src/models/foto_model.dart';
-import 'package:trifasic_101/src/models/mantenimiento_model.dart';
-import 'package:trifasic_101/src/services/foto_service.dart';
-import 'package:trifasic_101/src/widgets/mantenimiento_details_content_widget.dart';
-import 'package:trifasic_101/src/widgets/mantenimiento_form_widget.dart';*/
 
 class CanchaFutbolDetailsWidget extends StatefulWidget {
   const CanchaFutbolDetailsWidget({Key? key, required this.cfutbol})
@@ -17,11 +11,11 @@ class CanchaFutbolDetailsWidget extends StatefulWidget {
   final CanchaFutbol cfutbol;
 
   @override
-  _ReservationDetailsWidgetState createState() =>
-      _ReservationDetailsWidgetState();
+  _CanchaFutbolDetailsWidgetState createState() =>
+      _CanchaFutbolDetailsWidgetState();
 }
 
-class _ReservationDetailsWidgetState extends State<CanchaFutbolDetailsWidget>
+class _CanchaFutbolDetailsWidgetState extends State<CanchaFutbolDetailsWidget>
     with SingleTickerProviderStateMixin {
   final List<Tab> _myTabs = <Tab>[
     const Tab(text: 'Detalles'),

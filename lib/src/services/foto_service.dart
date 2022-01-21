@@ -48,7 +48,8 @@ class FotoService {
   }
 
   Future<String> uploadImage(File image) async {
-    final cloudinary = CloudinaryPublic('', '', cache: false);
+    final cloudinary =
+        CloudinaryPublic('Deporte AB', 'ml_default', cache: false);
     try {
       CloudinaryResponse response = await cloudinary.uploadFile(
         CloudinaryFile.fromFile(image.path,

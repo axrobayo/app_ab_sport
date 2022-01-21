@@ -1,19 +1,19 @@
 // To parse this JSON data, do
 //
-//     final CanchaBasquet = CanchaBasquetFromJson(jsonString);
+//     final CanchaVoley = CanchaVoleyFromJson(jsonString);
 
 import 'dart:convert';
 
 import 'package:ab_sport/src/models/foto_models.dart';
 
-CanchaBasquet canchaBasquetFromJson(String str) =>
-    CanchaBasquet.fromJson(json.decode(str));
+CanchaVoley canchaVoleyFromJson(String str) =>
+    CanchaVoley.fromJson(json.decode(str));
 
-String canchaBasquetToJson(CanchaBasquet data) => json.encode(data.toJson());
+String canchaVoleyToJson(CanchaVoley data) => json.encode(data.toJson());
 
-class CanchaBasquet {
-  CanchaBasquet({
-    this.idBasquet,
+class CanchaVoley {
+  CanchaVoley({
+    this.idVoley,
     this.nombreCancha,
     this.fotoCancha,
     this.balon,
@@ -23,9 +23,10 @@ class CanchaBasquet {
     this.estado,
     this.nombreCliente,
     this.telefonoCliente,
+    this.red,
   });
 
-  String? idBasquet;
+  String? idVoley;
   String? nombreCancha;
   String? fotoCancha;
   bool? balon;
@@ -35,25 +36,27 @@ class CanchaBasquet {
   bool? estado;
   String? nombreCliente;
   String? telefonoCliente;
+  bool? red;
 
-  factory CanchaBasquet.fromJson(Map<String, dynamic> json) => CanchaBasquet(
-        idBasquet: json["idBasquet"],
+  factory CanchaVoley.fromJson(Map<String, dynamic> json) => CanchaVoley(
+        idVoley: json["idVoley"],
         nombreCancha: json["nombreCancha"],
         fotoCancha: json["fotoCancha"],
         balon: json["balon"],
         precio: json["precio"].toDouble(),
         horario:
             json["horario"] == null ? null : DateTime.parse(json["horario"]),
-        fotoCedula: json["fotoCedula"] == null
-            ? null
-            : Foto.fromJson(json["fotoCedula"]),
+        //fotoCedula: json["fotoCedula"] == null
+        //    ? null
+        //    : Foto.fromJson(json["fotoCedula"]),
         estado: json["estado"],
-        nombreCliente: json["nombreCanchaBasquet"],
-        telefonoCliente: json["telefonoCanchaBasquet"],
+        nombreCliente: json["nombreCliente"],
+        telefonoCliente: json["telefonoCliente"],
+        red: json["red"],
       );
 
   Map<String, dynamic> toJson() => {
-        "idBasquet": idBasquet,
+        "idVoley": idVoley,
         "nombreCancha": nombreCancha,
         "fotoCancha": fotoCancha,
         "balon": balon,
@@ -61,7 +64,8 @@ class CanchaBasquet {
         "horario": horario,
         "fotoCedula": fotoCedula!.toJson(),
         "estado": estado,
-        "nombreCanchaBasquet": nombreCliente,
-        "telefonoCanchaBasquet": telefonoCliente,
+        "nombreCliente": nombreCliente,
+        "telefonoCliente": telefonoCliente,
+        "red": red,
       };
 }

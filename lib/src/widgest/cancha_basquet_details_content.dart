@@ -1,17 +1,19 @@
-import 'package:ab_sport/src/models/cancha_futbol_models.dart';
+import 'package:ab_sport/src/models/cancha_basquet_models.dart';
+
 import 'package:flutter/material.dart';
 //import 'package:trifasic_101/src/models/reservacion_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
 //import 'package:trifasic_101/src/widgets/reservacion_priority_widget.dart';
 
-class CanchaFutbolDetailsContentWidget extends StatelessWidget {
-  const CanchaFutbolDetailsContentWidget({Key? key, required this.cfutbol})
+class CanchaBasquetDetailsContentWidget extends StatelessWidget {
+  const CanchaBasquetDetailsContentWidget(
+      {Key? key, required this.cbasquet})
       : super(key: key);
-  final CanchaFutbol cfutbol;
+  final CanchaBasquet cbasquet;
 
   @override
   Widget build(BuildContext context) {
-    DateTime createdDate = cfutbol.horario ?? DateTime.now();
+    DateTime createdDate = cbasquet.horario ?? DateTime.now();
     final created = timeago.format(createdDate, locale: 'es');
 
     return Padding(
@@ -20,12 +22,12 @@ class CanchaFutbolDetailsContentWidget extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.comment),
           title: const Text("Nombre de la cancha"),
-          subtitle: Text(cfutbol.nombreCancha ?? ""),
+          subtitle: Text(cbasquet.nombreCancha ?? ""),
         ),
         ListTile(
           leading: const Icon(Icons.comment),
           title: const Text("Precio"),
-          subtitle: Text(cfutbol.precio.toString()),
+          subtitle: Text(cbasquet.precio.toString()),
         ),
         ListTile(
           leading: const Icon(Icons.comment),
@@ -33,12 +35,13 @@ class CanchaFutbolDetailsContentWidget extends StatelessWidget {
           subtitle: Text(created),
         ),
         ListTile(
-            leading: const Icon(Icons.comment),
-            title: const Text("Estado"),
-            subtitle: Text(cfutbol.horario.toString())),
+          leading: const Icon(Icons.comment),
+          title: const Text("Estado"),
+          subtitle: Text(cbasquet.horario.toString())
+        ),
         const Center(
-            child: Text(
-                "jhaah") /*reservacionPriorityWidget(priority: reservacion.prioridad)*/)
+            child:
+                Text("jhaah")/*reservacionPriorityWidget(priority: reservacion.prioridad)*/)
       ]),
     );
   }

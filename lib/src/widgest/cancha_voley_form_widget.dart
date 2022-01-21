@@ -1,6 +1,5 @@
 import 'dart:io';
 
-//import 'package:ab_sport/src/models/cancha_futbol_models.dart';
 import 'package:ab_sport/src/models/foto_models.dart';
 import 'package:ab_sport/src/services/foto_service.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +9,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'package:trifasic_101/src/services/foto_service.dart';
 
-class CanchaFutbolFormWidget extends StatefulWidget {
-  const CanchaFutbolFormWidget({Key? key, required this.idFutbol})
+class CanchaVoleyFormWidget extends StatefulWidget {
+  const CanchaVoleyFormWidget({Key? key, required this.idFutbol})
       : super(key: key);
   final String idFutbol;
 
   @override
-  _CanchaFutbolFormWidgetState createState() => _CanchaFutbolFormWidgetState();
+  _CanchaVoleyFormWidgetState createState() => _CanchaVoleyFormWidgetState();
 }
 
-class _CanchaFutbolFormWidgetState extends State<CanchaFutbolFormWidget> {
-  //late CanchaFutbol futbol;
+class _CanchaVoleyFormWidgetState extends State<CanchaVoleyFormWidget> {
   late Foto _foto;
   File? _imagen;
   final ImagePicker _picker = ImagePicker();
@@ -38,7 +36,6 @@ class _CanchaFutbolFormWidgetState extends State<CanchaFutbolFormWidget> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    //bool? checkBoxValue;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -58,44 +55,6 @@ class _CanchaFutbolFormWidgetState extends State<CanchaFutbolFormWidget> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 14.0, horizontal: 7.0),
                   child: Column(children: [
-                    /*TextFormField(
-                        keyboardType: TextInputType.text,
-                        initialValue: futbol.nombreCliente,
-                        onSaved: (value) {
-                          //Este evento se ejecuta cuando el Form ha sido guardado localmente
-                          _foto.observacion =
-                              value; //Asigna el valor del TextFormField al atributo del modelo
-                        },
-                        validator: (value) {
-                          return _validateObservacion(value!);
-                        },
-                        decoration:
-                            const InputDecoration(labelText: "Ingrese el nombre del cliente"),
-                        maxLength: 255,
-                        maxLines: 3),
-                    TextFormField(
-                        keyboardType: TextInputType.text,
-                        initialValue: futbol.telefonoCliente,
-                        onSaved: (value) {
-                          //Este evento se ejecuta cuando el Form ha sido guardado localmente
-                          _foto.observacion =
-                              value; //Asigna el valor del TextFormField al atributo del modelo
-                        },
-                        validator: (value) {
-                          return _validateObservacion(value!);
-                        },
-                        decoration:
-                            const InputDecoration(labelText: "Ingrese su numero de telefono"),
-                        maxLength: 255,
-                        maxLines: 3),
-                    
-                    Checkbox(value: checkBoxValue,
-                    activeColor: Colors.green, 
-                    onChanged: (bool? newvalue){
-                      setState(() {
-                        checkBoxValue = newvalue;  
-                      });
-                    } ),*/
                     TextFormField(
                         keyboardType: TextInputType.text,
                         initialValue: _foto.observacion,
@@ -111,7 +70,21 @@ class _CanchaFutbolFormWidgetState extends State<CanchaFutbolFormWidget> {
                             const InputDecoration(labelText: "Observación"),
                         maxLength: 255,
                         maxLines: 3),
-                    
+                    TextFormField(
+                        keyboardType: TextInputType.text,
+                        initialValue: _foto.observacion,
+                        onSaved: (value) {
+                          //Este evento se ejecuta cuando el Form ha sido guardado localmente
+                          _foto.observacion =
+                              value; //Asigna el valor del TextFormField al atributo del modelo
+                        },
+                        validator: (value) {
+                          return _validateObservacion(value!);
+                        },
+                        decoration:
+                            const InputDecoration(labelText: "Observación"),
+                        maxLength: 255,
+                        maxLines: 3),
                     Padding(
                         padding: const EdgeInsets.only(top: 7.0),
                         child: Text("Ingresar la fecha de reservacion",
@@ -134,7 +107,7 @@ class _CanchaFutbolFormWidgetState extends State<CanchaFutbolFormWidget> {
                         child: Padding(
                           padding: const EdgeInsets.all(7.0),
                           child: _imagen == null
-                              ? Image.asset('assets/images/futbol.jpeg')
+                              ? Image.asset('assets/images/voley.jpg')
                               : Image.file(_imagen!),
                         )),
                     Row(
