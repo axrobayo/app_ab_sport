@@ -1,5 +1,8 @@
 import 'package:ab_sport/src/models/categoria.dart';
-import 'package:ab_sport/src/widgest/catalogo_cancha_widget.dart';
+import 'package:ab_sport/src/widgest/cancha_basquet_firebase_widget.dart';
+import 'package:ab_sport/src/widgest/cancha_futbol_firebase_widget.dart';
+import 'package:ab_sport/src/widgest/cancha_voly_firebase_widget.dart';
+//import 'package:ab_sport/src/widgest/catalogo_cancha_widget.dart';
 import 'package:flutter/material.dart';
 
 class MenuCanchas extends StatefulWidget {
@@ -25,12 +28,31 @@ class _MenuCanchasState extends State<MenuCanchas> {
                     borderRadius: BorderRadius.circular(10)),
                 child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      if (menu[index].nombre == "Fútbol") {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const CanchaFutbolFirebaseWidget()));
+                      } else if (menu[index].nombre == "Basquet") {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const CanchaBasquetFirebaseWidget()));
+                      } else if (menu[index].nombre == "Ecuavoley") {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const CanchaVoleyFirebaseWidget()));
+                      }
+                      /*Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const ListaCanchaWidget()));
+                              builder: (_) => const ListaCanchaWidget()));*/
                       // ignore: avoid_print
-                      print("click en" + menu[index].nombre);
+                      //print("click en" + menu[index].nombre);
                     },
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

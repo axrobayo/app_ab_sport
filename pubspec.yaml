@@ -39,6 +39,11 @@ dependencies:
   shared_preferences: ^2.0.11
   provider: ^6.0.1
   firebase_core: ^1.11.0
+  cloud_firestore: ^3.1.6
+  timeago: ^3.1.0
+  flutter_holo_date_picker: ^1.0.1+2
+  image_picker: ^0.8.4+4
+  cloudinary_public: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -78,10 +83,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Akrobat
+      fonts:
+        - asset: assets/fonts/Akrobat-Regular.otf
+    - family: Nexa
+      fonts:
+        - asset: assets/fonts/NexaBook.otf    
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
