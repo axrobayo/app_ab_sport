@@ -10,7 +10,7 @@ import 'dart:developer' as developer;
 
 class FotoService {
   FotoService();
-  final String _urlRoot = "proyecto-5e4b9.web.app/api/foto";
+  final String _urlRoot = "https://proyecto-5e4b9.web.app/api/foto";
 
   Future<int> postFoto(Foto foto) async {
     try {
