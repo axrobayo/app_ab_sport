@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:ab_sport/src/models/usuario_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
 
 class UsuarioService {
   UsuarioService();
 
-  final String _urlRoot = "https://proyecto-5e4b9.web.app/api/registro";
+  //final String _urlRoot = "https://proyecto-5e4b9.web.app/api/registro";
   final String _firebaseAPIKey = 'AIzaSyAAYLawLquO5snwMg2OryoncK99ol0-gn8';
 
   Future<Map<String, dynamic>> login(Usuario usuario) async {
@@ -32,7 +33,14 @@ class UsuarioService {
   }
 
   Future<int> postUsuario(Usuario usuario) async {
-    try {
+    try{
+      FirebaseAuth registro = FirebaseAuth.instance; 
+      await registro.createUserWithEmailAndPassword(email: usuario.email.toString(), password: usuario.password.toString());
+      return 201;
+    }catch(e){
+      return 500;
+    }
+    /*try {
       var uri = Uri.parse(_urlRoot);
       String usuarioBody = usuarioToJson(usuario);
       final Map<String, String> _headers = {"content-type": "application/json"};
@@ -44,7 +52,6 @@ class UsuarioService {
       return result;
     } catch (ex) {
       developer.log("Error $ex");
-      return 500;
+      return 500;*/
     }
-  }
 }

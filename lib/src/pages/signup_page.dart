@@ -147,7 +147,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                             int result =
                                                 await _usrServ.postUsuario(usr);
                                             if (result == 201) {
+                                              //showDialog(context: context, builder: builder)
+                                              _buildAlertDialogRegistrado();
                                               Navigator.pop(context);
+                                              
                                             }
                                           }
                                         : null,
@@ -166,4 +169,20 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     )));
   }
+}
+
+Widget _buildAlertDialogRegistrado() {
+  return AlertDialog(
+    title: const Text('Notificaciones'),
+    content: const Text(
+        "¿Desea recibir notificaciones? Serán muy pocas de verdad :)"),
+    actions: <Widget>[
+      ElevatedButton(
+          child: const Text("Aceptar"),
+          //Color: Colors.blue,
+          onPressed: () {
+            //Navigator.of(context).pop();
+          }),
+    ],
+  );
 }

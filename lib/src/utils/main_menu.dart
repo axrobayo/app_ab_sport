@@ -1,4 +1,5 @@
 import 'package:ab_sport/src/pages/menu_canchas.dart';
+import 'package:ab_sport/src/widgest/cuenta_widget.dart';
 //import 'package:ab_sport/src/widgest/catalogo_cancha_widget.dart';
 
 //import 'package:ab_sport/src/widgest/location_widget.dart';
@@ -20,7 +21,7 @@ List<ItemMenu> menuOptions = [
 List<Widget> homeWidgets = [
   const MenuCanchas(),
   //const ListaCanchaWidget(),
-  const Text("Aqui debe ir la reservacion"),
+  const SettingsPage(),
   const Text("Trabajandooo.....")//ListaReservacionWidget()
   //const MaterialesWidget()
 ];

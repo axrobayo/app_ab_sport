@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class AppTheme {
   //AppTheme._();
 
-  static final Color colorHighPriority = Colors.red;
-  static final Color colorMediumPriority = Colors.yellow;
+  static const Color colorHighPriority = Colors.red;
+  static const Color colorMediumPriority = Colors.yellow;
   static const Color colorLowPriority = Colors.green;
 
   static final TextTheme _textTheme = TextTheme(
@@ -46,9 +46,9 @@ class AppTheme {
             labelColor: lightMode ? const Color(0xFF283593) : Colors.white),
         colorScheme: ColorScheme(
             primary: const Color(0xFF283593),
-            primaryVariant: const Color(0xFF1d87e5),
+            //primaryVariant: const Color(0xFF1d87e5),
             secondary: const Color(0xFFffee58),
-            secondaryVariant: const Color(0xFFc9bc1f),
+            //secondaryVariant: const Color(0xFFc9bc1f),
             surface: Colors.white,
             background: Colors.grey,
             error: Colors.red,

@@ -107,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                                               mainProvider.token =
                                                   resp['idToken'];
                                             }
+                                            _buildAlertDialogRegistrado();
                                           }
                                         : null,
                                     icon: const Icon(Icons.login),
@@ -135,4 +136,20 @@ class _LoginPageState extends State<LoginPage> {
       ),
     )));
   }
+}
+
+Widget _buildAlertDialogRegistrado() {
+  return AlertDialog(
+    title: const Text('Notificaciones'),
+    content: const Text(
+        "¿Desea recibir notificaciones? Serán muy pocas de verdad :)"),
+    actions: <Widget>[
+      ElevatedButton(
+          child: const Text("Aceptar"),
+          //Color: Colors.blue,
+          onPressed: () {
+            //Navigator.of(context).pop();
+          }),
+    ],
+  );
 }

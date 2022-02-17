@@ -50,6 +50,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   firebase_messaging: ^11.2.6
   flutter_local_notifications: ^9.2.0
+  firebase_auth: ^3.3.7
 
 dependency_overrides:
   # Override for `flutter_local_notifications`:
