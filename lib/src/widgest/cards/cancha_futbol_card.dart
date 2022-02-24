@@ -4,6 +4,7 @@ import 'package:ab_sport/src/widgest/location_cancha_futbol_widget.dart';
 import 'package:flutter/material.dart';
 //import 'package:photo_view/photo_view.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+//import 'package:flutter_animated_button/flutter_animated_button.dart';
 //import 'package:getwidget/getwidget.dart';
 
 class CanchaCard extends StatelessWidget {
@@ -35,25 +36,23 @@ class CanchaCard extends StatelessWidget {
           ButtonBar(
             alignment: MainAxisAlignment.start,
             children: [
-              ElevatedButton(
-                //textColor: const Color(0xFF6200EE),
-                onPressed: () {
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                        builder: (BuildContext context) =>
-                            CanchaFutbolPage(cfutbol: cfutbol)),
-                  );
-                  // Perform some action
-                },
-                child: const Text('RESERVAR'),
-              ),
               ElevatedButton.icon(onPressed: (){
                 Navigator.push<void>(
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
                           const  LocationWidgetFutbol()),
+                );            
+              }, 
+              icon: const Icon(Icons.location_on)
+              , label: const Text('UBICACION'),),
+
+              ElevatedButton.icon(onPressed: (){
+                Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                          CanchaFutbolPage(cfutbol: cfutbol)),
                 );            
               }, 
               icon: const Icon(Icons.location_on)
