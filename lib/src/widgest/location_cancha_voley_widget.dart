@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+late double _latitud, _longitud;
 
 class LocationWidgetVoley extends StatefulWidget {
   const LocationWidgetVoley({Key? key}) : super(key: key);
@@ -15,11 +16,6 @@ class LocationWidgetVoley extends StatefulWidget {
 
 class _LocationWidgetVoleyState extends State<LocationWidgetVoley> {
   final Completer<GoogleMapController> _controller = Completer();
-
-  final CameraPosition _kLatacunga = const CameraPosition(
-    target: LatLng(-0.9333, -78.6185),
-    zoom: 14,
-  );
 
   final Stream<QuerySnapshot> _mantenimientoStrem =
       FirebaseFirestore.instance.collection('canchaVoley').snapshots();
@@ -48,14 +44,13 @@ class _LocationWidgetVoleyState extends State<LocationWidgetVoley> {
           if (snapshot.hasData) {
             Set<Marker> kMnts =
                 snapshot.data!.docs.map((DocumentSnapshot document) {
-              CanchaVoley model = CanchaVoley.fromJson(
-                  document.data() as Map<String, dynamic>);
-
+              CanchaVoley model =
+                  CanchaVoley.fromJson(document.data() as Map<String, dynamic>);
+              _latitud = model.lat!;
+              _longitud = model.lng!;
               Marker marker = Marker(
-                  icon:  
-                       BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueRed),
-                      
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueRed),
                   infoWindow: InfoWindow(title: model.nombreCancha),
                   markerId: MarkerId(model.idVoley ?? ""),
                   position:
@@ -66,7 +61,8 @@ class _LocationWidgetVoleyState extends State<LocationWidgetVoley> {
             return GoogleMap(
               markers: kMnts,
               mapType: MapType.terrain,
-              initialCameraPosition: _kLatacunga,
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(_latitud, _longitud), zoom: 14),
               onMapCreated: (GoogleMapController controller) {
                 _controller.complete(controller);
               },

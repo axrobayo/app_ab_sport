@@ -49,7 +49,7 @@ class CanchaCard extends StatelessWidget {
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                            const LocationWidgetFutbol()),
+                          const  LocationWidgetFutbol()),
                 );            
               }, 
               icon: const Icon(Icons.location_on)

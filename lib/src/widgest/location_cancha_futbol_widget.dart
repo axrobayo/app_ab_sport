@@ -1,9 +1,11 @@
 import 'dart:async';
-
 import 'package:ab_sport/src/models/cancha_futbol_models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+//final CanchaFutbol puntos = CanchaFutbol();
+late double latitud, longitud;
 
 
 class LocationWidgetFutbol extends StatefulWidget {
@@ -16,10 +18,10 @@ class LocationWidgetFutbol extends StatefulWidget {
 class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final CameraPosition _kLatacunga = const CameraPosition(
-    target: LatLng(-0.9333, -78.6185),
+  /*final CameraPosition _kLatacunga = CameraPosition(
+    target: LatLng(puntos.lat!, puntos.lng!),
     zoom: 14,
-  );
+  );*/
 
   final Stream<QuerySnapshot> _mantenimientoStrem =
       FirebaseFirestore.instance.collection('canchaFutbol').snapshots();
@@ -31,8 +33,7 @@ class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Center(
-              child: SizedBox(
-                  child: Text('Error al consultar la cancha.')),
+              child: SizedBox(child: Text('Error al consultar la cancha.')),
             );
           }
 
@@ -50,12 +51,12 @@ class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
                 snapshot.data!.docs.map((DocumentSnapshot document) {
               CanchaFutbol model = CanchaFutbol.fromJson(
                   document.data() as Map<String, dynamic>);
+              latitud= model.lat!;    
+              longitud=model.lng!;
 
               Marker marker = Marker(
-                  icon:  
-                       BitmapDescriptor.defaultMarkerWithHue(
-                          BitmapDescriptor.hueRed),
-                      
+                  icon: BitmapDescriptor.defaultMarkerWithHue(
+                      BitmapDescriptor.hueRed),
                   infoWindow: InfoWindow(title: model.nombreCancha),
                   markerId: MarkerId(model.idFutbol ?? ""),
                   position:
@@ -66,7 +67,10 @@ class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
             return GoogleMap(
               markers: kMnts,
               mapType: MapType.terrain,
-              initialCameraPosition: _kLatacunga,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(latitud, longitud),
+                zoom: 14,
+              ),
               onMapCreated: (GoogleMapController controller) {
                 _controller.complete(controller);
               },

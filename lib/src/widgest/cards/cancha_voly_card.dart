@@ -2,7 +2,7 @@ import 'package:ab_sport/src/models/cancha_voley_models.dart';
 import 'package:ab_sport/src/pages/cancha_voley_page.dart';
 import 'package:ab_sport/src/widgest/location_cancha_voley_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
 class CanchaVolyCard extends StatelessWidget {
   const CanchaVolyCard({Key? key, required this.voley}) : super(key: key);
