@@ -1,11 +1,16 @@
 import 'package:ab_sport/src/models/cancha_voley_models.dart';
 import 'package:ab_sport/src/pages/cancha_voley_page.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CanchaVolyCard extends StatelessWidget {
   const CanchaVolyCard({Key? key, required this.voley}) : super(key: key);
   final CanchaVoley voley;
-
+   void whatsapp({@required number, @required message}) async {
+     String url = "whatsapp://send?phone=$number&text=$message";
+     
+     await canLaunch(url) ? launch(url) : print("No se puede abrir WhatsApp");
+  }
   @override
   Widget build(BuildContext context) {
     final urlImg = voley.fotoCancha!;
@@ -44,6 +49,22 @@ class CanchaVolyCard extends StatelessWidget {
                   
                 },
                 child: const Text('RESERVAR'),
+              ),
+            ],
+          ),
+
+          //Boton Whatsapp
+         
+          ButtonBar(
+            alignment: MainAxisAlignment.start,
+            children: [
+              ElevatedButton(
+                //textColor: const Color(0xFF6200EE),
+                onPressed: () {
+                  whatsapp(number: "+593987192472", message: "Mensaje");
+                  
+                },
+                child: const Text('WhatsApp'),
               ),
             ],
           ),

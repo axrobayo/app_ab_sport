@@ -5,6 +5,8 @@ import 'package:ab_sport/src/services/usuario_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'home_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -63,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                                       errorText: snapshot.error?.toString(),
                                       icon: const Icon(Icons.email),
                                       labelText: "Correo electrónico",
-                                      hintText: "admin@trifasic.com"));
+                                      hintText: "admin@absport.com"));
                             }),
                         StreamBuilder<String>(
                             stream: _loginBloc.passwordStream,
@@ -107,7 +109,11 @@ class _LoginPageState extends State<LoginPage> {
                                               mainProvider.token =
                                                   resp['idToken'];
                                             }
-                                            _buildAlertDialogRegistrado();
+                                             Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (_) =>
+                                                                  const HomePage()));
                                           }
                                         : null,
                                     icon: const Icon(Icons.login),
@@ -138,18 +144,3 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Widget _buildAlertDialogRegistrado() {
-  return AlertDialog(
-    title: const Text('Notificaciones'),
-    content: const Text(
-        "¿Desea recibir notificaciones? Serán muy pocas de verdad :)"),
-    actions: <Widget>[
-      ElevatedButton(
-          child: const Text("Aceptar"),
-          //Color: Colors.blue,
-          onPressed: () {
-            //Navigator.of(context).pop();
-          }),
-    ],
-  );
-}

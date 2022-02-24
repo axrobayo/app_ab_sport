@@ -44,6 +44,7 @@ class CanchaBasquetCard extends StatelessWidget {
               ),
             ],
           ),
+          
           //Image.network(basquet.foto ?? "")
           //Image.asset('assets/card-sample-image-2.jpg'),
         ],

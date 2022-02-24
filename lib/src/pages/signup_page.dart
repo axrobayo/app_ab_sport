@@ -1,7 +1,14 @@
 import 'package:ab_sport/src/bloc/signup_bloc.dart';
 import 'package:ab_sport/src/models/usuario_model.dart';
-import 'package:ab_sport/src/services/usuario_service.dart';
+//import 'package:ab_sport/src/services/usuario_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'login_page.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+late String us = "";
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -13,7 +20,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool _obscureText = true;
   final SignUpBloc _signUpBloc = SignUpBloc();
-  final UsuarioService _usrServ = UsuarioService();
+  //final UsuarioService _usrServ = UsuarioService();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       errorText: snapshot.error?.toString(),
                                       icon: const Icon(Icons.email),
                                       labelText: "Correo electrónico",
-                                      hintText: "admin@trifasic.com"));
+                                      hintText: "admin@absport.com"));
                             }),
                         StreamBuilder<String>(
                             stream: _signUpBloc.passwordStream,
@@ -95,42 +102,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       icon: const Icon(Icons.lock),
                                       labelText: "Contraseña"));
                             }),
-                        /*DropdownButton<String>(
-                            onChanged: (String? newValue) {
-                              _roleSelected = newValue!;
-                              setState(() {});
-                            },
-                            value: _roleSelected,
-                            icon: const Icon(Icons.arrow_downward),
-                            elevation: 16,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor),
-                            underline: Container(height: 2),
-                            items: _roles
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList()),*/
-                        /*DropdownButton<String>(
-                            onChanged: (String? newValue) {
-                              _groupSelected = newValue!;
-                              setState(() {});
-                            },
-                            value: _groupSelected,
-                            icon: const Icon(Icons.arrow_downward),
-                            elevation: 16,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor),
-                            underline: Container(height: 2),
-                            items: _groups
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList()),*/
                         Padding(
                           padding: const EdgeInsets.only(top: 30.0),
                           child: StreamBuilder<bool>(
@@ -142,20 +113,59 @@ class _SignUpPageState extends State<SignUpPage> {
                                             Usuario usr = Usuario(
                                                 displayName:
                                                     _signUpBloc.username,
+                                                    
                                                 email: _signUpBloc.email,
                                                 password: _signUpBloc.password);
-                                            int result =
-                                                await _usrServ.postUsuario(usr);
-                                            if (result == 201) {
-                                              //showDialog(context: context, builder: builder)
-                                              _buildAlertDialogRegistrado();
-                                              Navigator.pop(context);
-                                              
-                                            }
+                                            await _register(usr);
+                                            await _sendToServer(usr);
+                                            //showDialog(context: context, builder: builder)
+                                            showDialog(
+                                              barrierDismissible: false,
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: const Text(
+                                                    'Registro Completado',
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                  content: SingleChildScrollView(
+                                                    child: ListBody(
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/images/visto.gif",
+                                                          height: 125.0,
+                                                          width: 125.0,
+                                                        ),
+                                                        const Text(
+                                                          'Bienvenidos a "AB Sport", procede a iniciar sesión ',
+                                                          textAlign: TextAlign.center,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                        child: const Align(
+                                                            alignment: Alignment.center,
+                                                            child: Text('Aceptar',
+                                                                textAlign: TextAlign.center,
+                                                                style: TextStyle(
+                                                                  color: Colors.black,
+                                                                ))),
+                                                        onPressed: () {
+                                                           Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (_) =>
+                                                                  const LoginPage()));
+                                                        })
+                                                  ],
+                                                );
+                                              });
                                           }
                                         : null,
                                     icon: const Icon(Icons.login),
-                                    label: const Text("Ingresar"));
+                                    label: const Text("Registrar"));
                               }),
                         )
                       ],
@@ -171,18 +181,24 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-Widget _buildAlertDialogRegistrado() {
-  return AlertDialog(
-    title: const Text('Notificaciones'),
-    content: const Text(
-        "¿Desea recibir notificaciones? Serán muy pocas de verdad :)"),
-    actions: <Widget>[
-      ElevatedButton(
-          child: const Text("Aceptar"),
-          //Color: Colors.blue,
-          onPressed: () {
-            //Navigator.of(context).pop();
-          }),
-    ],
-  );
+Future<void> _sendToServer(Usuario usuario) async {
+  FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
+    CollectionReference reference;
+    reference = FirebaseFirestore.instance.collection("usuario");
+    await reference.add({
+      // ignore: unnecessary_string_interpolations
+      "uid": "$us",
+      "name": usuario.displayName.toString(),
+    });
+  });
+}
+
+Future<void> _register(Usuario usuario) async {
+  final User? user = (await _auth.createUserWithEmailAndPassword(
+    email: usuario.email.toString(),
+    password: usuario.password.toString(),
+  ))
+      .user;
+  us = user!.uid;
+  // ignore: unnecessary_null_comparison
 }

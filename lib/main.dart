@@ -35,8 +35,8 @@ Future<void> main() async {
 
   if (!kIsWeb) {
     channel = const AndroidNotificationChannel(
-        'trifasic_101_notification_channel', // id
-        'Trifasic 101 Notification Channel', // title
+        'absport_notification_channel', // id
+        'AB Sport Notification Channel', // title
         description:
             'This channel is used for important notifications.', // description
         importance: Importance.high);

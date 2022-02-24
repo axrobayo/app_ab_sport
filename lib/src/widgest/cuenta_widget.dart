@@ -1,3 +1,4 @@
+import 'package:ab_sport/src/pages/login_page.dart';
 import 'package:ab_sport/src/providers/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -15,7 +16,7 @@ class SettingsPage extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
-      appBar: AppBar(title: const Text("Trifasic - Ajustes")),
+      appBar: AppBar(title: const Text("Datos de usuario")),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
@@ -24,18 +25,16 @@ class SettingsPage extends StatelessWidget {
                 child: ListTile(
                     trailing: IconButton(
                         onPressed: () {
-                          mainProvider.token = "";
-                          Navigator.pop(context);
+                          //mainProvider.token = " ";
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const LoginPage()));
                         },
                         icon: const Icon(Icons.logout)),
                     leading: const Icon(Icons.person),
-                    //title: Text(content["name"]),
-                    subtitle: const Text("Nombre"))),
-            /*Card(
-                child: ListTile(
-                    leading: const Icon(Icons.computer),
-                    title: Text(content["role"].toString().toUpperCase()),
-                    subtitle: const Text("Rol"))),*/
+                    title: const Text("¿Desea cerrar sesión?"))),
             Card(
                 child: ListTile(
                     leading: const Icon(Icons.important_devices),
@@ -46,14 +45,7 @@ class SettingsPage extends StatelessWidget {
                     leading: const Icon(Icons.email),
                     title: Text(content["email"]),
                     subtitle: const Text("Correo electrónico"))),
-            /*Card(
-                child: ListTile(
-                    leading: const Icon(Icons.people),
-                    title: content.containsKey("group")
-                        ? Text("GRUPO " + content["group"])
-                        : null,
-                    subtitle: const Text("Grupo de trabajo"))),*/
-            //const SettingMode()
+          
           ],
         ),
       ),

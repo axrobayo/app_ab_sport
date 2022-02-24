@@ -13,7 +13,7 @@ class ItemMenu {
 
 List<ItemMenu> menuOptions = [
   ItemMenu(Icons.home, "Catalogo"),
-  ItemMenu(Icons.history_sharp, "Apartado 2"),
+  ItemMenu(Icons.person,"Cuenta"),
   ItemMenu(Icons.grading, "Apartado 3"),
   //ItemMenu(Icons.search, "Buscar"),
   //ItemMenu(Icons.people, "Técnicos")

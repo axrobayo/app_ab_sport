@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ab_sport/src/models/usuario_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
@@ -10,7 +11,7 @@ class UsuarioService {
 
   //final String _urlRoot = "https://proyecto-5e4b9.web.app/api/registro";
   final String _firebaseAPIKey = 'AIzaSyAAYLawLquO5snwMg2OryoncK99ol0-gn8';
-
+  final String us = "";
   Future<Map<String, dynamic>> login(Usuario usuario) async {
     try {
       final loginBody = {
@@ -54,4 +55,18 @@ class UsuarioService {
       developer.log("Error $ex");
       return 500;*/
     }
+
+  Future<void> sendToServer(Usuario usuario) async {
+    FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
+      CollectionReference reference;
+      reference = FirebaseFirestore.instance.collection("usuario");
+      await reference.add({
+        // ignore: unnecessary_string_interpolations
+        "uid": "$us",
+        "name": usuario.displayName.toString(),
+      });
+    });
+  }
+
+
 }

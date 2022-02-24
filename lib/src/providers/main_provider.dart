@@ -36,7 +36,7 @@ class MainProvider extends ChangeNotifier {
   Future<bool> initPrefs() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      _mode = prefs.getBool("mode") ?? true;
+      _mode = prefs.getBool("mode") ?? false;
       _token = prefs.getString("token") ?? "";
       return true;
     } catch (e) {
