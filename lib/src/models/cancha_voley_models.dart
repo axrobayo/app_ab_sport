@@ -9,8 +9,6 @@ import 'package:ab_sport/src/models/foto_models.dart';
 CanchaVoley canchaVoleyFromJson(String str) =>
     CanchaVoley.fromJson(json.decode(str));
 
-String canchaVoleyToJson(CanchaVoley data) => json.encode(data.toJson());
-
 class CanchaVoley {
   CanchaVoley({
     this.idVoley,
@@ -24,6 +22,8 @@ class CanchaVoley {
     this.nombreCliente,
     this.telefonoCliente,
     this.red,
+    this.lat,
+    this.lng,
   });
 
   String? idVoley;
@@ -37,6 +37,8 @@ class CanchaVoley {
   String? nombreCliente;
   String? telefonoCliente;
   bool? red;
+  double? lat;
+  double? lng;
 
   factory CanchaVoley.fromJson(Map<String, dynamic> json) => CanchaVoley(
         idVoley: json["idVoley"],
@@ -53,19 +55,7 @@ class CanchaVoley {
         nombreCliente: json["nombreCliente"],
         telefonoCliente: json["telefonoCliente"],
         red: json["red"],
+         lat: json["lat"],
+        lng: json["lng"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "idVoley": idVoley,
-        "nombreCancha": nombreCancha,
-        "fotoCancha": fotoCancha,
-        "balon": balon,
-        "precio": precio,
-        "horario": horario,
-        "fotoCedula": fotoCedula!.toJson(),
-        "estado": estado,
-        "nombreCliente": nombreCliente,
-        "telefonoCliente": telefonoCliente,
-        "red": red,
-      };
 }

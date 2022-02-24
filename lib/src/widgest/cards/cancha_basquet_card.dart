@@ -1,5 +1,6 @@
 import 'package:ab_sport/src/models/cancha_basquet_models.dart';
 import 'package:ab_sport/src/pages/cancha_basquet_page.dart';
+import 'package:ab_sport/src/widgest/location_cancha_basquet_widget.dart';
 import 'package:flutter/material.dart';
 
 class CanchaBasquetCard extends StatelessWidget {
@@ -42,6 +43,16 @@ class CanchaBasquetCard extends StatelessWidget {
                 },
                 child: const Text('RESERVAR'),
               ),
+              ElevatedButton.icon(onPressed: (){
+                Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const LocationWidgetBasquet()),
+                );            
+              }, 
+              icon: const Icon(Icons.location_on)
+              , label: const Text('UBICACION'),)
             ],
           ),
           

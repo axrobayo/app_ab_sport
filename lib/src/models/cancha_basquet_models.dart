@@ -6,12 +6,10 @@ import 'dart:convert';
 
 import 'package:ab_sport/src/models/foto_models.dart';
 
-//import 'package:ab_sport/src/models/foto_models.dart';
+
 
 CanchaBasquet canchaBasquetFromJson(String str) =>
     CanchaBasquet.fromJson(json.decode(str));
-
-String canchaBasquetToJson(CanchaBasquet data) => json.encode(data.toJson());
 
 class CanchaBasquet {
   CanchaBasquet({
@@ -25,6 +23,8 @@ class CanchaBasquet {
     this.estado,
     this.nombreCliente,
     this.telefonoCliente,
+    this.lat,
+    this.lng
   });
 
   String? idBasquet;
@@ -37,6 +37,8 @@ class CanchaBasquet {
   bool? estado;
   String? nombreCliente;
   String? telefonoCliente;
+  double? lat;
+  double? lng;
 
   factory CanchaBasquet.fromJson(Map<String, dynamic> json) => CanchaBasquet(
         idBasquet: json["idBasquet"],
@@ -46,22 +48,10 @@ class CanchaBasquet {
         precio: json["precio"].toDouble(),
         horario:
             json["horario"] == null ? null : DateTime.parse(json["horario"]),
-        //fotoCedula: json["fotoCedula"],
         estado: json["estado"],
         nombreCliente: json["nombreCanchaBasquet"],
         telefonoCliente: json["telefonoCanchaBasquet"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "idBasquet": idBasquet,
-        "nombreCancha": nombreCancha,
-        "fotoCancha": fotoCancha,
-        "balon": balon,
-        "precio": precio,
-        "horario": horario,
-        "fotoCedula": fotoCedula!.toJson(),
-        "estado": estado,
-        "nombreCanchaBasquet": nombreCliente,
-        "telefonoCanchaBasquet": telefonoCliente,
-      };
+        lat: json["lat"],
+        lng: json["lng"],
+      );  
 }

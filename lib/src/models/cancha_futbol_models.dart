@@ -11,7 +11,7 @@ import 'package:ab_sport/src/models/foto_models.dart';
 CanchaFutbol canchaFutbolFromJson(String str) =>
     CanchaFutbol.fromJson(json.decode(str));
 
-String canchaFutbolToJson(CanchaFutbol data) => json.encode(data.toJson());
+
 
 class CanchaFutbol {
   CanchaFutbol({
@@ -25,6 +25,8 @@ class CanchaFutbol {
     this.estado,
     this.nombreCliente,
     this.telefonoCliente,
+    this.lat,
+    this.lng
   });
 
   String? idFutbol;
@@ -37,6 +39,8 @@ class CanchaFutbol {
   bool? estado;
   String? nombreCliente;
   String? telefonoCliente;
+  double? lat;
+  double? lng;
 
   factory CanchaFutbol.fromJson(Map<String, dynamic> json) => CanchaFutbol(
         idFutbol: json["idFutbol"],
@@ -46,22 +50,12 @@ class CanchaFutbol {
         precio: json["precio"].toDouble(),
         horario:
             json["horario"] == null ? null : DateTime.parse(json["horario"]),
-        //fotoCedula: json["fotoCedula"],
         estado: json["estado"],
         nombreCliente: json["nombreCliente"],
         telefonoCliente: json["telefonocliente"],
+        lat: json["lat"],
+        lng: json["lng"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "idFutbol": idFutbol,
-        "nombreCancha": nombreCancha,
-        "fotoCancha": fotoCancha,
-        "balon": balon,
-        "precio": precio,
-        "horario": horario,
-        "fotoCedula": fotoCedula!.toJson(),
-        "estado": estado,
-        "nombreCliente": nombreCliente,
-        "telefonoCliente": telefonoCliente,
-      };
+  
 }

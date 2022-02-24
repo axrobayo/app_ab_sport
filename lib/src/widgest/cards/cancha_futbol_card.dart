@@ -1,5 +1,6 @@
 import 'package:ab_sport/src/models/cancha_futbol_models.dart';
 import 'package:ab_sport/src/pages/cancha_futbol_page.dart';
+import 'package:ab_sport/src/widgest/location_cancha_futbol_widget.dart';
 import 'package:flutter/material.dart';
 //import 'package:getwidget/getwidget.dart';
 
@@ -43,8 +44,19 @@ class CanchaCard extends StatelessWidget {
                 },
                 child: const Text('RESERVAR'),
               ),
+              ElevatedButton.icon(onPressed: (){
+                Navigator.push<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const LocationWidgetFutbol()),
+                );            
+              }, 
+              icon: const Icon(Icons.location_on)
+              , label: const Text('UBICACION'),)
             ],
           ),
+          
           //Image.network(cfutbol.foto ?? "")
           //Image.asset('assets/card-sample-image-2.jpg'),
         ],
