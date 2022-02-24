@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 //final CanchaFutbol puntos = CanchaFutbol();
-late double latitud, longitud;
+late double _latitud, _longitud;
 
 
 class LocationWidgetFutbol extends StatefulWidget {
@@ -17,11 +17,6 @@ class LocationWidgetFutbol extends StatefulWidget {
 
 class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
   final Completer<GoogleMapController> _controller = Completer();
-
-  /*final CameraPosition _kLatacunga = CameraPosition(
-    target: LatLng(puntos.lat!, puntos.lng!),
-    zoom: 14,
-  );*/
 
   final Stream<QuerySnapshot> _mantenimientoStrem =
       FirebaseFirestore.instance.collection('canchaFutbol').snapshots();
@@ -51,8 +46,8 @@ class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
                 snapshot.data!.docs.map((DocumentSnapshot document) {
               CanchaFutbol model = CanchaFutbol.fromJson(
                   document.data() as Map<String, dynamic>);
-              latitud= model.lat!;    
-              longitud=model.lng!;
+              _latitud= model.lat!;    
+              _longitud=model.lng!;
 
               Marker marker = Marker(
                   icon: BitmapDescriptor.defaultMarkerWithHue(
@@ -68,7 +63,7 @@ class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
               markers: kMnts,
               mapType: MapType.terrain,
               initialCameraPosition: CameraPosition(
-                target: LatLng(latitud, longitud),
+                target: LatLng(_latitud, _longitud),
                 zoom: 14,
               ),
               onMapCreated: (GoogleMapController controller) {

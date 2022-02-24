@@ -2,6 +2,7 @@ import 'package:ab_sport/src/models/cancha_voley_models.dart';
 import 'package:ab_sport/src/pages/cancha_voley_page.dart';
 import 'package:ab_sport/src/widgest/location_cancha_voley_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 //import 'package:url_launcher/url_launcher.dart';
 
 class CanchaVolyCard extends StatelessWidget {
@@ -14,6 +15,8 @@ class CanchaVolyCard extends StatelessWidget {
   }*/
   @override
   Widget build(BuildContext context) {
+    TextEditingController _numberCtrl = TextEditingController();
+    _numberCtrl.text = "0987192472";
     final urlImg = voley.fotoCancha!;
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -60,7 +63,13 @@ class CanchaVolyCard extends StatelessWidget {
                 );            
               }, 
               icon: const Icon(Icons.location_on)
-              , label: const Text('UBICACION'),)
+              , label: const Text('UBICACION'),),
+
+              ElevatedButton.icon(onPressed: (){
+                FlutterPhoneDirectCaller.callNumber(_numberCtrl.text);          
+              }, 
+              icon: const Icon(Icons.local_phone)
+              , label: const Text('LLAMAR'),)
             ],
           ),
 
