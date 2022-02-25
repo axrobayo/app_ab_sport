@@ -35,18 +35,12 @@ class _EmailFormState extends State<EmailForm> {
                     TextFormField(
                         keyboardType: TextInputType.text,
                         controller: conAsunto,
-                        validator: (value) {
-                          return _validateAsunto(value!);
-                        },
                         decoration: const InputDecoration(labelText: "Asunto"),
                         maxLength: 255,
                         maxLines: 3),
                     TextFormField(
                         keyboardType: TextInputType.text,
                         controller: conDescripcion,
-                        validator: (value) {
-                          return _validateDescripcion(value!);
-                        },
                         decoration:
                             const InputDecoration(labelText: "Descripción"),
                         maxLength: 255,
@@ -77,26 +71,5 @@ class _EmailFormState extends State<EmailForm> {
     if (!await launch(url)) {
       throw 'no se puede acceder al siguiente enlace: $url';
     }
-  }
-
-  /*_validatePara(String value) {
-    if (value.length < 5) {
-      return "Debe ingresar al menos 5 caracteres";
-    }
-    return null; //Cuando se retorna nulo el campo te texto está validado
-  }*/
-
-  _validateAsunto(String value) {
-    if (value.length < 5) {
-      return "Debe ingresar al menos 5 caracteres";
-    }
-    return null; //Cuando se retorna nulo el campo te texto está validado
-  }
-
-  _validateDescripcion(String value) {
-    if (value.length < 10) {
-      return "Debe ingresar al menos 10 caracteres";
-    }
-    return null; //Cuando se retorna nulo el campo te texto está validado
   }
 }
