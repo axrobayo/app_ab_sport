@@ -18,13 +18,13 @@ class LocationWidgetFutbol extends StatefulWidget {
 class _LocationWidgetFutbolState extends State<LocationWidgetFutbol> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final Stream<QuerySnapshot> _mantenimientoStrem =
+  final Stream<QuerySnapshot> _canchaStrem =
       FirebaseFirestore.instance.collection('canchaFutbol').snapshots();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _mantenimientoStrem,
+        stream: _canchaStrem,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Center(

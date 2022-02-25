@@ -17,18 +17,18 @@ class LocationWidgetBasquet extends StatefulWidget {
 class _LocationWidgetBasquetState extends State<LocationWidgetBasquet> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final Stream<QuerySnapshot> _mantenimientoStrem =
+  final Stream<QuerySnapshot> _canchaStrem =
       FirebaseFirestore.instance.collection('canchaBasquet').snapshots();
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _mantenimientoStrem,
+        stream: _canchaStrem,
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Center(
               child: SizedBox(
-                  child: Text('Error al consultar los mantenimientos.')),
+                  child: Text('Error al consultar la cancha')),
             );
           }
 

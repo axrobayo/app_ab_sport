@@ -36,23 +36,22 @@ class CanchaCard extends StatelessWidget {
           ButtonBar(
             alignment: MainAxisAlignment.start,
             children: [
-              ElevatedButton.icon(onPressed: (){
+              ElevatedButton(onPressed: (){
                 Navigator.push<void>(
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                          const  LocationWidgetFutbol()),
+                          CanchaFutbolPage(cfutbol: cfutbol)),
                 );            
-              }, 
-              icon: const Icon(Icons.location_on)
-              , label: const Text('UBICACION'),),
+              }
+              , child: const Text('RESERVAR'),),
 
               ElevatedButton.icon(onPressed: (){
                 Navigator.push<void>(
                     context,
                     MaterialPageRoute<void>(
                         builder: (BuildContext context) =>
-                          CanchaFutbolPage(cfutbol: cfutbol)),
+                          const  LocationWidgetFutbol()),
                 );            
               }, 
               icon: const Icon(Icons.location_on)
