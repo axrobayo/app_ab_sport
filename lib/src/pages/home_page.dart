@@ -1,12 +1,13 @@
 import 'package:ab_sport/src/providers/main_provider.dart';
 //import 'package:ab_sport/src/providers/shared_preferences.dart';
 import 'package:ab_sport/src/utils/main_menu.dart';
+import 'package:ab_sport/src/widgest/email_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
-const _url = 'https://github.com/axrobayo/app_ab_sport';
+//const _url = 'https://github.com/axrobayo/app_ab_sport';
 final List<String> _options = [
   "Catalogo",
   "Reservacion",
@@ -50,7 +51,11 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: const Text('Contactanos: AB Sport'),
               onTap: () {
-                _launchURL();
+                Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const EmailForm()));
               },
             ),
           ],
@@ -71,11 +76,25 @@ class HomePage extends StatelessWidget {
                   BottomNavigationBarItem(icon: Icon(e.icon), label: e.title))
               .toList(),
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color.fromARGB(230, 0, 3, 8),
+          foregroundColor: const Color.fromARGB(255, 253, 253, 253),
+          //mini: true,
+          onPressed: () {
+            Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const EmailForm()));
+            // Respond to button press
+          },
+          child: const Icon(Icons.mail),
+        ),
       ),
     );
   }
 }
 
-void _launchURL() async {
+/*void _launchURL() async {
   if (!await launch(_url)) throw 'no se puede acceder al siguiente enlace: $_url';
-}
+}*/
